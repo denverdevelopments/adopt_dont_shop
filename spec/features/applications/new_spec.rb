@@ -1,44 +1,43 @@
 require 'rails_helper'
 
-RSpec.describe 'pet creation' do
-  before(:each) do
-    @shelter = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
-  end
-
-  describe 'the pet new' do
+RSpec.describe 'application creation' do
+  describe 'the application new' do
     it 'renders the new form' do
-      visit "/shelters/#{@shelter.id}/pets/new"
+      visit "/applications/new"
 
-      expect(page).to have_content('New Pet')
+      expect(page).to have_content('New Application')
       expect(find('form')).to have_content('Name')
-      expect(find('form')).to have_content('Breed')
-      expect(find('form')).to have_content('Age')
-      expect(find('form')).to have_content('Adoptable')
+      expect(find('form')).to have_content('Address')
+      expect(find('form')).to have_content('City')
+      expect(find('form')).to have_content('State')
+      expect(find('form')).to have_content('Zip code')
+      expect(page).to have_button('Create New')
     end
   end
 
-  describe 'the pet create' do
+  describe 'the application create' do
     context 'given valid data' do
-      it 'creates the pet and redirects to the shelter pets index' do
-        visit "/shelters/#{@shelter.id}/pets/new"
+      it 'creates the application and redirects to the applications index' do
+        visit "/applications/new"
 
-        fill_in 'Name', with: 'Bumblebee'
-        fill_in 'Age', with: 1
-        fill_in 'Breed', with: 'Welsh Corgi'
-        check 'Adoptable'
-        click_button 'Save'
-        expect(page).to have_current_path("/shelters/#{@shelter.id}/pets")
-        expect(page).to have_content('Bumblebee')
+        fill_in 'Name', with: 'First Last'
+        fill_in 'Address', with: '123 St'
+        fill_in 'City', with: 'Denver'
+        fill_in 'State', with: 'CO'
+        fill_in 'Zip code', with: '80222'
+        click_button 'Create New'
+        expect(page).to have_current_path("/applications/#{Application.last.id}")
+        expect(page).to have_content('First Last')
       end
     end
 
     context 'given invalid data' do
       it 're-renders the new form' do
-        visit "/shelters/#{@shelter.id}/pets/new"
+        visit "/applications/new"
 
-        click_button 'Save'
-        expect(page).to have_current_path("/shelters/#{@shelter.id}/pets/new")
-        expect(page).to have_content("Error: Name can't be blank, Age can't be blank, Age is not a number")
+        click_button 'Create New'
+        expect(page).to have_current_path("/applications")
+        expect(page).to have_content("Name can't be blank, Address can't be blank, City can't be blank, State can't be blank, and Zip code can't be blank")
       end
     end
   end

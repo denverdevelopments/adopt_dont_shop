@@ -5,33 +5,44 @@ class ApplicationsController < ApplicationController
     @pets = @application.pets
   end
 
-  # def index
+  def index
+    @applications = Application.all
   #   if params[:search].present?
   #     @applications = Application.search(params[:search])
   #   else
   #     @applications = Application.adoptable
   #   end
-  # end
+  end
 
   def new
-    @shelter = Shelter.find(params[:shelter_id])
   end
 
   def create
+    # application = Application.new({
+    #   name: params[:name],
+    #   address: params[:address],
+    #   address: params[:city],
+    #   address: params[:state],
+    #   address: params[:zip_code],
+    #   address: params[:good_home],
+    #   zip_code: params[:status]
+    #   })
     application = Application.new(application_params)
     if application.save
       redirect_to "/applications/#{application.id}"
     else
-      redirect_to "/applications/new"
-      flash[:alert] = "Error: #{error_message(application.errors)}"
+      flash[:errors] = application.errors.full_messages.to_sentence
+      # flash[:notice] = "Application not created: Incomplete"
+      render :new
     end
+  end
+
     # if application.save
     #   redirect_to "/shelters/#{application_params[:shelter_id]}/applications"
     # else
     #   redirect_to "/shelters/#{application_params[:shelter_id]}/applications/new"
     #   flash[:alert] = "Error: #{error_message(application.errors)}"
     # end
-  end
   #
   # def edit
   #   @application = Application.find(params[:id])
@@ -55,6 +66,6 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:id, :name, :address, :state, :zip, :good_home, :status)
+    params.permit(:id, :name, :address, :city, :state, :zip_code, :good_home, :status)
   end
 end

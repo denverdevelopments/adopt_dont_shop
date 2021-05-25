@@ -4,16 +4,14 @@
   <%= f.label :search %>
   <%= f.text_field :search %>
   <%= f.submit "Search" %>
-<% end %>
+<% end %><br/>
 
-<%= link_to "Start an Application", "/applications/new" %>
+<h4>&emsp;*<%= link_to "Start an Application", "/applications/new " %>*</h4>
 
 <% @pets.each do |pet| %>
   <h3><%= pet.name %></h3>
   <p>Age: <%= pet.age %></p>
   <p>Breed: <%= pet.breed %></p>
   <p>Adoptable: <%= pet.adoptable %></p>
-  <p>You can find <%= pet.name %> at <%= pet.shelter_name %>!</p>
-  <%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %>
-  &emsp;<%= link_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %>
+  <p>You can find <%= pet.name %> at <%= pet.shelter_name %>!</p><br/>
 <% end %>

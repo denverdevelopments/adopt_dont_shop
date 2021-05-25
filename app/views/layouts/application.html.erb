@@ -11,15 +11,14 @@
 
   <body>
     <% flash.each do |type, msg| %>
-      <div>
+      <div class="alert alert-info">
         <%= msg %>
       </div>
     <% end %>
     <section>
-      <p><%= link_to "Pets", "/pets" %></p>
-      <p><%= link_to "Shelters", "/shelters" %></p>
-      <p><%= link_to "Veterinarians", "/veterinarians" %></p>
-      <p><%= link_to "Veterinary Offices", "/veterinary_offices" %></p>
+      <p style="text-align:left;">&emsp;&emsp;(<%= link_to "Applications", "/applications" %>)
+    &emsp;&emsp;[<%= link_to "Pets", "/pets" %>]&emsp;[<%= link_to "Shelters", "/shelters" %>]<span style="float:right;">[<%= link_to "Veterinarians", "/veterinarians" %>]&emsp;[<%= link_to "Veterinary Offices", "/veterinary_offices" %>]&emsp;</span>
+      </p>
     </section>
     <%= yield %>
   </body>

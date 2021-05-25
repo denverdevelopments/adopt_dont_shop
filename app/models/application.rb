@@ -1,16 +1,10 @@
 class Application < ApplicationRecord
-  validates :name, presence: true
-  validates :address, presence: true
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zip_code, presence: true
-  validates :good_home, presence: true
-  validates :status, inclusion: ["In Progress", "Pending", "Accepted", "Rejected"]
+  validates :name, :address, :city, :state, :zip_code, :good_home, presence: true
+  validates :status, presence: true, inclusion: ["In Progress", "Pending", "Accepted", "Rejected"]
 
-  has_many :pet_applications
+  has_many :pet_applications, dependent: :delete_all
   has_many :pets, through: :pet_applications
 
-  # belongs_to :shelter
   # has_many :pets, dependent: :destroy
 
   # def self.order_by_number_of_pets

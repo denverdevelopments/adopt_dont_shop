@@ -6,6 +6,8 @@ class PetsController < ApplicationController
       @pets = Pet.adoptable
     end
   end
+  # <%= link_to "Edit #{pet.name}", "/pets/#{pet.id}/edit" %>
+  # &emsp;<%= link_to "Delete #{pet.name}", "/pets/#{pet.id}", method: :delete %>
 
   def show
     @pet = Pet.find(params[:id])
