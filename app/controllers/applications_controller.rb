@@ -13,20 +13,25 @@ class ApplicationsController < ApplicationController
   #   end
   # end
 
-  # def new
-  #   @shelter = Shelter.find(params[:shelter_id])
-  # end
-  #
-  # def create
-  #   application = Application.new(application_params)
-  #
-  #   if application.save
-  #     redirect_to "/shelters/#{application_params[:shelter_id]}/applications"
-  #   else
-  #     redirect_to "/shelters/#{application_params[:shelter_id]}/applications/new"
-  #     flash[:alert] = "Error: #{error_message(application.errors)}"
-  #   end
-  # end
+  def new
+    @shelter = Shelter.find(params[:shelter_id])
+  end
+
+  def create
+    application = Application.new(application_params)
+    if application.save
+      redirect_to "/applications/#{application.id}"
+    else
+      redirect_to "/applications/new"
+      flash[:alert] = "Error: #{error_message(application.errors)}"
+    end
+    # if application.save
+    #   redirect_to "/shelters/#{application_params[:shelter_id]}/applications"
+    # else
+    #   redirect_to "/shelters/#{application_params[:shelter_id]}/applications/new"
+    #   flash[:alert] = "Error: #{error_message(application.errors)}"
+    # end
+  end
   #
   # def edit
   #   @application = Application.find(params[:id])
