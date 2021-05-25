@@ -3,10 +3,11 @@ class Application < ApplicationRecord
   validates :address, presence: true
   validates :city, presence: true
   validates :state, presence: true
-  validates :zip, presence: true
+  validates :zip_code, presence: true
   validates :good_home, presence: true
   validates :status, inclusion: ["In Progress", "Pending", "Accepted", "Rejected"]
 
+  has_many :pet_applications
   has_many :pets, through: :pet_applications
 
   # belongs_to :shelter

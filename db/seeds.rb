@@ -8,11 +8,12 @@
 
 Pet.destroy_all
 Shelter.destroy_all
-Applicant.destroy_all
+Application.destroy_all
+PetApplication.destroy_all
 
-withers = Applicant.create!(name: 'Bill Withers', address: '670 S. Perry Street', city: 'Atlanta', state: 'GA', zip_code: 30305, reasons: 'Two others friendly dogs at home.', status: 'In Progress')
-james = Applicant.create!(name: 'Etta James', address: '1425 Jay Way', city: 'Minneapolis', state: 'MN', zip_code: 55401, reasons: 'Big yard, works from home.', status: 'In Progress')
-fitz = Applicant.create!(name: 'Ella Fitz', address: '5401 E. Warren Ave. #211', city: 'Austin', state: 'TX', zip_code: 78704, reasons: 'Close to parks, owner likes to run.', status: 'In Progress')
+withers = Application.create!(name: 'Bill Withers', address: '670 S. Perry Street', city: 'Atlanta', state: 'GA', zip_code: 30305, good_home: 'Two others friendly dogs at home.', status: 'In Progress')
+james = Application.create!(name: 'Etta James', address: '1425 Jay Way', city: 'Minneapolis', state: 'MN', zip_code: 55401, good_home: 'Big yard, works from home.', status: 'In Progress')
+fitz = Application.create!(name: 'Ella Fitz', address: '5401 E. Warren Ave. #211', city: 'Austin', state: 'TX', zip_code: 78704, good_home: 'Close to parks, owner likes to run.', status: 'In Progress')
 
 aurora = Shelter.create!(foster_program: false, name: 'Aurora Animal Center', rank: 3, city: 'Aurora')
 golden = Shelter.create!(foster_program: true, name: 'Golden Shelter', rank: 1, city: 'Golden')
@@ -29,12 +30,12 @@ babe = aurora.pets.create!(adoptable: true, age: 3, breed: 'domestic pig', name:
 elle = golden.pets.create!(adoptable: true, age: 4, breed: 'chihuahua', name: 'Elle')
 
 
-PetApplicant.create!(applicant: james, pet: fluffalo)
-PetApplicant.create!(applicant: james, pet: kaya)
-PetApplicant.create!(applicant: withers, pet: florence)
-PetApplicant.create!(applicant: withers, pet: jeff)
-kaya.applicants << withers
-jeff.applicants << fitz
+PetApplication.create!(application: james, pet: fluffalo)
+PetApplication.create!(application: james, pet: kaya)
+PetApplication.create!(application: withers, pet: florence)
+PetApplication.create!(application: withers, pet: jeff)
+kaya.applications << withers
+jeff.applications << fitz
 
-# PetApplicant.create!(applicant: fitz, pet: jeff
-# PetApplicant.create!(applicant: withers, pet: kaya)
+# PetApplication.create!(application: fitz, pet: jeff
+# PetApplication.create!(application: withers, pet: kaya)
