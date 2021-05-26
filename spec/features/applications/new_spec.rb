@@ -11,7 +11,6 @@ RSpec.describe 'application creation' do
       expect(find('form')).to have_content('City')
       expect(find('form')).to have_content('State')
       expect(find('form')).to have_content('Zip code')
-      expect(find('form')).to have_content('Why Adopting')
       expect(page).to have_button('Create New')
     end
   end
@@ -38,7 +37,7 @@ RSpec.describe 'application creation' do
 
         click_button 'Create New'
         expect(page).to have_current_path("/applications")
-        expect(page).to have_content("Name can't be blank, Address can't be blank, City can't be blank, State can't be blank, and Zip code can't be blank")
+        expect(page).to have_content("ERROR: Name can't be blank, Address can't be blank, City can't be blank, State can't be blank, Zip code can't be blank")
       end
     end
   end

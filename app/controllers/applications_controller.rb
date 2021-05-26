@@ -3,6 +3,7 @@ class ApplicationsController < ApplicationController
   def show
     @application = Application.find(params[:id])
     @pets = @application.pets
+    @pet_count = @application.pets.count
   end
 
   def index
@@ -15,7 +16,7 @@ class ApplicationsController < ApplicationController
   end
 
   def new
-    
+
   end
 
   def create
@@ -23,20 +24,11 @@ class ApplicationsController < ApplicationController
     if application.save
       redirect_to "/applications/#{application.id}"
     else
-      flash[:errors] = application.errors.full_messages.to_sentence
-      # flash[:notice] = "Application not created: Incomplete"
-      # flash[:alert] = "Error: #{error_message(pet.errors)}"
-
+      flash[:alert] = "ERROR: #{error_message(application.errors)}"
       render :new
     end
   end
 
-    # if application.save
-    #   redirect_to "/shelters/#{application_params[:shelter_id]}/applications"
-    # else
-    #   redirect_to "/shelters/#{application_params[:shelter_id]}/applications/new"
-    #   flash[:alert] = "Error: #{error_message(application.errors)}"
-    # end
   #
   # def edit
   #   @application = Application.find(params[:id])

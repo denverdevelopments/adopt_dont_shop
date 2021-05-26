@@ -4,7 +4,7 @@
 <P>&emsp;State: <%= @application.state %></P>
 <P>&emsp;Zip Code: <%= @application.zip_code %></P>
 <P>&emsp;Reasons Adopting: <%= @application.good_home %></P>
-<h3>STATUS -- <%= @application.status %></h3>
+<h3>(Status) * <%= @application.status %> *</h3>
 
 <% @pets.each do |pet| %>
   <section id="pet-<%= pet.id %>">
@@ -19,4 +19,14 @@
     <%= f.text_field :search %>
     <%= f.submit "Search" %>
   <% end %>
+<% end %>
+
+<% if @pet_count > 0 %>
+  <p>Please give your reason(s) for adopting:</p><br/>
+  <%= form_with url: "/applications/#{@application.id}", method: :post, local: true do |f| %>
+    <%= f.text_area :good_home %>
+    <%= f.submit "Enter Reasons" %>
+  <% end %>
+
+  <p><%= button_to "Submit Application", "/applications/#{@application.id}", method: :get %></p>
 <% end %>

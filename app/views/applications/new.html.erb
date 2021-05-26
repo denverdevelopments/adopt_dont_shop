@@ -15,10 +15,7 @@
   <%= f.label :zip_code %>
   <%= f.text_field :zip_code %><br/><br/>
 
-  <%= f.label "Why Adopting" %>
-  <%= f.text_area :good_home %>
-
-  <%= f.hidden_field :status, value: "In Progress" %><br/><br/>
+  <%= f.hidden_field :status, value: "In Progress" %><br/>
 
   <%= f.submit "Create New" %>
 <% end %>

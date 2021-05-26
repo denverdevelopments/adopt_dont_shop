@@ -36,14 +36,17 @@ RSpec.describe 'the application show' do
     expect(page).to_not have_link(@pet_4.name)
   end
 
-  it 'has a text box to filter results by keyword' do
+  it 'has a text box to filter results by name' do
     visit "/applications/#{@application.id}"
     expect(page).to have_content("Add a Pet to this Application")
     expect(find('form')).to have_content('Search')
     expect(page).to have_button("Search")
   end
 
-
+  it 'has a submit button if one or more pet is added' do
+      visit "/applications/#{@application.id}"
+    expect(page).to have_button("Submit Application")
+  end
 
 
   # it 'lists partial matches as search results' do

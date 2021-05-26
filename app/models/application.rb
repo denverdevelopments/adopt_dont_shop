@@ -1,5 +1,5 @@
 class Application < ApplicationRecord
-  validates :name, :address, :city, :state, :zip_code, :good_home, presence: true
+  validates :name, :address, :city, :state, :zip_code, presence: true
   validates :status, presence: true, inclusion: ["In Progress", "Pending", "Accepted", "Rejected"]
 
   has_many :pet_applications, dependent: :delete_all
