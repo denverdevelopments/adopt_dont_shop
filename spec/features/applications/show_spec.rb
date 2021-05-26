@@ -36,6 +36,32 @@ RSpec.describe 'the application show' do
     expect(page).to_not have_link(@pet_4.name)
   end
 
+  it 'has a text box to filter results by keyword' do
+    visit "/applications/#{@application.id}"
+    expect(page).to have_content("Add a Pet to this Application")
+    expect(find('form')).to have_content('Search')
+    expect(page).to have_button("Search")
+  end
+
+
+
+
+  # it 'lists partial matches as search results' do
+  #   shelter = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
+  #   pet_1 = Pet.create(adoptable: true, age: 7, breed: 'sphynx', name: 'Bare-y Manilow', shelter_id: shelter.id)
+  #   pet_2 = Pet.create(adoptable: true, age: 3, breed: 'domestic pig', name: 'Babe', shelter_id: shelter.id)
+  #   pet_3 = Pet.create(adoptable: true, age: 4, breed: 'chihuahua', name: 'Elle', shelter_id: shelter.id)
+  #
+  #   visit "/pets"
+  #
+  #   fill_in 'Search', with: "Ba"
+  #   click_on("Search")
+  #
+  #   expect(page).to have_content(pet_1.name)
+  #   expect(page).to have_content(pet_2.name)
+  #   expect(page).to_not have_content(pet_3.name)
+  # end
+
   # it "allows the user to delete a pet" do
   #   shelter = Shelter.create(name: 'Mystery Building', city: 'Irvine CA', foster_program: false, rank: 9)
   #   pet = Pet.create(name: 'Scrappy', age: 1, breed: 'Great Dane', adoptable: true, shelter_id: shelter.id)

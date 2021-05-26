@@ -18,21 +18,14 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    # application = Application.new({
-    #   name: params[:name],
-    #   address: params[:address],
-    #   address: params[:city],
-    #   address: params[:state],
-    #   address: params[:zip_code],
-    #   address: params[:good_home],
-    #   zip_code: params[:status]
-    #   })
     application = Application.new(application_params)
     if application.save
       redirect_to "/applications/#{application.id}"
     else
       flash[:errors] = application.errors.full_messages.to_sentence
       # flash[:notice] = "Application not created: Incomplete"
+      # flash[:alert] = "Error: #{error_message(pet.errors)}"
+
       render :new
     end
   end

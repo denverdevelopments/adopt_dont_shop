@@ -11,6 +11,7 @@ RSpec.describe 'application creation' do
       expect(find('form')).to have_content('City')
       expect(find('form')).to have_content('State')
       expect(find('form')).to have_content('Zip code')
+      expect(find('form')).to have_content('Why Adopting')
       expect(page).to have_button('Create New')
     end
   end

@@ -1,13 +1,22 @@
-<h2><%= @application.name %></h1>
-<h3><%= @application.address %></h3>
-<h3><%= @application.city %></h3>
-<h3><%= @application.state %></h3>
-<h3><%= @application.zip_code %></h3>
-<h3><%= @application.good_home %></h3>
-<h3><%= @application.status %></h3>
+<h2><%= @application.name %></h2>
+<P>&emsp;Address: <%= @application.address %></P>
+<P>&emsp;City: <%= @application.city %></P>
+<P>&emsp;State: <%= @application.state %></P>
+<P>&emsp;Zip Code: <%= @application.zip_code %></P>
+<P>&emsp;Reasons Adopting: <%= @application.good_home %></P>
+<h3>STATUS -- <%= @application.status %></h3>
 
 <% @pets.each do |pet| %>
   <section id="pet-<%= pet.id %>">
     <h4>&emsp;<%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h4>
   </section>
-<% end %><br/>
+<% end %>
+<br/>
+
+<% if @application.status != "Submitted" %>
+  <p>Add a Pet to this Application</p><br/>
+  <%= form_with url: "/pets", method: :get, local: true do |f| %>
+    <%= f.text_field :search %>
+    <%= f.submit "Search" %>
+  <% end %>
+<% end %>

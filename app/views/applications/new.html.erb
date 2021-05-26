@@ -1,23 +1,24 @@
 <h2>New Application</h2>
 <%= form_with url: "/applications", method: :post, local: true do |f| %>
-  <%= f.label :name %>
+  <%= f.label :name %>&emsp;&nbsp
   <%= f.text_field :name %><br/><br/>
 
   <%= f.label :address %>
   <%= f.text_field :address %><br/><br/>
 
-  <%= f.label :city %>
+  <%= f.label :city %>&emsp;&nbsp&nbsp
   <%= f.text_field :city %><br/><br/>
 
-  <%= f.label :state %>
+  <%= f.label :state %>&emsp;&nbsp
   <%= f.text_field :state %><br/><br/>
 
   <%= f.label :zip_code %>
   <%= f.text_field :zip_code %><br/><br/>
 
-  <%= f.hidden_field :good_home, value: "-" %>
+  <%= f.label "Why Adopting" %>
+  <%= f.text_area :good_home %>
 
-  <%= f.hidden_field :status, value: "In Progress" %>
+  <%= f.hidden_field :status, value: "In Progress" %><br/><br/>
 
   <%= f.submit "Create New" %>
 <% end %>
