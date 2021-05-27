@@ -4,7 +4,16 @@ class ApplicationsController < ApplicationController
     @application = Application.find(params[:id])
     @pets = @application.pets
     @pet_count = @application.pets.count
+    if params[:search]
+      @pet_searched = Pet.where(name: params[:search])
+      # @pet_searched = @application.pets.search(params[:search])
+    end
   end
+  # <%= form_with url: "/pets", method: :get, local: true do |f| %>
+  #   <%= f.text_field :search %>
+  #   <%= f.submit "Search" %>
+  # <% end %>
+
 
   def index
     @applications = Application.all
@@ -52,6 +61,6 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:id, :name, :address, :city, :state, :zip_code, :good_home, :status)
+    params.permit(:id, :name, :address, :city, :state, :zip_code, :good_home, :status, :search)
   end
 end

@@ -15,4 +15,9 @@ class Pet < ApplicationRecord
   def self.adoptable
     where(adoptable: true)
   end
+
+  def self.search(search)
+    self.where('name = ?', search) if search
+  end
+
 end

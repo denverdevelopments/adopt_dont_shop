@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
   get '/', to: 'application#welcome'
+
+  namespace :admin do
+    resources :applications
+      # resources :pets, only: [:create], controller: :pet_applications
+  end
   resources :applications
-  # get '/applications/:id', to: 'applications#show'
+
+  post '/applications/:application_id/pets', to: 'pet_applications#create'
 
   get '/pets', to: 'pets#index'
   get '/pets/:id', to: 'pets#show'

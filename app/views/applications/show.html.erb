@@ -15,9 +15,15 @@
 
 <% if @application.status != "Submitted" %>
   <p>Add a Pet to this Application</p><br/>
-  <%= form_with url: "/pets", method: :get, local: true do |f| %>
-    <%= f.text_field :search %>
-    <%= f.submit "Search" %>
+  <%= form_tag "/applications/#{@application.id}", method: :get do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag("Search Pets by Name") %>
+  <% end %>
+
+  <% if @pet_searched %>
+    <% @pet_searched.each do |pet| %>
+     <p> <%= pet.name %> </p>
+    <% end %>
   <% end %>
 <% end %>
 

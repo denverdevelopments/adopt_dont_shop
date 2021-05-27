@@ -39,7 +39,7 @@ RSpec.describe 'the application show' do
   it 'has a text box to filter results by name' do
     visit "/applications/#{@application.id}"
     expect(page).to have_content("Add a Pet to this Application")
-    expect(find('form')).to have_content('Search')
+    # expect(find('form')).to have_button('Search')
     expect(page).to have_button("Search")
   end
 
