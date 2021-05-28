@@ -5,15 +5,12 @@ class Shelter < ApplicationRecord
 
   has_many :pets, dependent: :destroy
 
-  def self.order_by_recently_created
-    order(created_at: :desc)
+  def self.pending_alphabetically
+    # joins(pets: {pet_applications: :applications})
   end
 
-  def self.order_by_number_of_pets
-    select("shelters.*, count(pets.id) AS pets_count")
-      .joins("LEFT OUTER JOIN pets ON pets.shelter_id = shelters.id")
-      .group("shelters.id")
-      .order("pets_count DESC")
+  def self.order_by_recently_created
+    order(created_at: :desc)
   end
 
   def pet_count
@@ -31,4 +28,11 @@ class Shelter < ApplicationRecord
   def shelter_pets_filtered_by_age(age_filter)
     adoptable_pets.where('age >= ?', age_filter)
   end
+
+  # def self.order_by_number_of_pets
+  #   select("shelters.*, count(pets.id) AS pets_count")
+  #     .joins("LEFT OUTER JOIN pets ON pets.shelter_id = shelters.id")
+  #     .group("shelters.id")
+  #     .order("pets_count DESC")
+  # end
 end

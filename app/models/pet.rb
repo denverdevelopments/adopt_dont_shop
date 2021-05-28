@@ -16,8 +16,11 @@ class Pet < ApplicationRecord
     where(adoptable: true)
   end
 
-  def self.search(search)
-    self.where('name = ?', search) if search
-  end
+  # def self.search(search)
+  #   self.where("name ILIKE :search", { search: "%#{params[:search]}%"})
+  #   # self.where("headline LIKE :query", { query: "%#{params[:query]}%"})
+  #   # self.where("headline ILIKE ?", "%#{params[:query]}%")
+  #   # self.where('name = ?', search) if search
+  # end
 
 end

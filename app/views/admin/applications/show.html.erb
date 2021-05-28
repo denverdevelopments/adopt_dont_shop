@@ -13,27 +13,23 @@
 <% end %>
 <br/>
 
-<section id="pet-search">
 <% if @application.status == "In Progress" %>
   <p>Add a Pet to this Application</p><br/>
-  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |form| %>
-    <%= form.label :search, "Pets by name:" %>
-    <%= form.text_field :search %>
-    <%= form.submit "Search" %>
-  <% end %>
-
+  <%= form_with url: "/applications/#{@application.id}", method: :get, local: true do |f| %>
+    <%= f.label :search, "Pets by name:" %>
+    <%= f.text_field :search %>
+    <%= f.submit "Search" %>
+  <% end %><br/>
 
   <% if @pet_searched %>
     <% @pet_searched.each do |pet| %>
-      <p>&emsp;<%= pet.name %>&emsp;<%= button_to "Adopt this Pet", "/applications/#{@application.id}" %></p>
+     <p><%= pet.name %><%= button_to "Adopt this Pet", "/applications/#{@application.id}" %></p>
     <% end %>
   <% end %>
 
 <% end %>
-</section>
 
-
-<% if @pet_count > 0 && @application.status == "In Progress"%>
+<% if @pet_count > 0 %>
   <p>Please give your reason(s) for adopting:</p><br/>
   <%= form_with url: "/applications/#{@application.id}", method: :post, local: true do |f| %>
     <%= f.text_area :good_home %>

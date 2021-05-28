@@ -5,6 +5,10 @@ class Application < ApplicationRecord
   has_many :pet_applications, dependent: :delete_all
   has_many :pets, through: :pet_applications
 
+  def count_pets
+    pets.count
+  end
+
   # has_many :pets, dependent: :destroy
 
   # def self.order_by_number_of_pets

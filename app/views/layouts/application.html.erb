@@ -16,9 +16,9 @@
       </div>
     <% end %>
     <section>
-      <p style="text-align:left;">&emsp;&emsp;(<%= link_to "Applications", "/applications" %>)
-    &emsp;&emsp;[<%= link_to "Pets", "/pets" %>]&emsp;[<%= link_to "Shelters", "/shelters" %>]<span style="float:right;">[<%= link_to "Veterinarians", "/veterinarians" %>]&emsp;[<%= link_to "Veterinary Offices", "/veterinary_offices" %>]&emsp;</span>
+      <p style="text-align:left;">&emsp;&emsp;[<%= link_to "Pets", "/pets" %>]&emsp;[<%= link_to "Shelters", "/shelters" %>]<span style="float:right;">[<%= link_to "Veterinarians", "/veterinarians" %>]&emsp;[<%= link_to "Veterinary Offices", "/veterinary_offices" %>]&emsp;</span>
       </p>
+      <p style="text-align:center;">(<%= link_to "Applications", "/applications" %>)&emsp;&emsp;&emsp;(<%= link_to "Apps ADMIN", "/admin/applications" %>)&emsp;&emsp;&emsp;(<%= link_to "Shelters ADMIN", "/admin/shelters" %>)</p>
     </section>
     <%= yield %>
   </body>

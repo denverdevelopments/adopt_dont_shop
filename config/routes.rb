@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/', to: 'application#welcome'
 
   namespace :admin do
+    resources :shelters
     resources :applications
       # resources :pets, only: [:create], controller: :pet_applications
   end
